@@ -1,0 +1,17 @@
+# Maintainer: Penn Bauman <pcb8gb@virginia.edu>
+pkgname=besic-s3upload
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="BESI-C AWS S3 upload script"
+arch=("any")
+depends=("bash" "python3" "python3-boto3" "uuid" "besic-lib")
+
+package() {
+  mkdir -p "$pkgdir/usr/bin"
+  mkdir -p "$pkgdir/usr/share/besic"
+
+  cp "$srcdir/s3upload.sh" "$pkgdir/usr/bin/besic-s3upload"
+  chmod 755 "$pkgdir/usr/bin/besic-s3upload"
+
+  cp "$srcdir/boto3-uploader.py" "$pkgdir/usr/share/besic/boto3-uploader.py"
+}
