@@ -1,6 +1,6 @@
 #!/bin/bash
 # BESI-C URL Config Reader
-#   https://github.com/pennbauman/besic-basestation
+#   https://github.com/pennbauman/besic-debs
 #   Penn Bauman <pcb8gb@virginia.edu>
 
 CONF_FILE="/etc/besic/url.conf"

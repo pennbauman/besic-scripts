@@ -1,6 +1,6 @@
 #!/bin/bash
 # BESI-C Relay Data Upload
-#   https://github.com/pennbauman/besic-relay
+#   https://github.com/pennbauman/besic-debs
 #   Penn Bauman <pcb8gb@virginia.edu>
 
 DATA_DIR="/var/besic/data"

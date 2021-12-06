@@ -1,5 +1,5 @@
 # BESI-C AWS S3 Data Uploader
-#   https://github.com/pennbauman/besic-relay
+#   https://github.com/pennbauman/besic-debs
 #   Yudel Martinez <yam3nv@virginia.edu>
 #   Penn Bauman <pcb8gb@virginia.edu>
 import boto3
