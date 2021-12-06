@@ -22,7 +22,7 @@ else
 fi
 
 # Export MAC env var or thow error
-if [ -z ${MAC+x} ]; then
+if [ -z $MAC ]; then
 	echo "MAC not found"
 	exit 1
 else
@@ -30,7 +30,7 @@ else
 fi
 
 # Export PASSWORD env var or thow error
-if [ -z ${PASSWORD+x} ]; then
+if [ -z $PASSWORD ]; then
 	echo "PASSWORD not found"
 	exit 1
 else

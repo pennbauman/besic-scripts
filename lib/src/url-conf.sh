@@ -12,7 +12,7 @@ if [ -e $CONF_FILE ]; then
 fi
 
 # Export URL env var
-if [ -z ${API_URL+x} ]; then
+if [ -z $API_URL ]; then
 	# Default value
 	export API_URL="http://api.besic.org"
 else

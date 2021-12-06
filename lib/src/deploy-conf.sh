@@ -12,7 +12,7 @@ if [ -e $CONF_FILE ]; then
 fi
 
 # Export DEPLOYMENT_NAME env var
-if [ -z ${DEPLOYMENT_NAME+x} ]; then
+if [ -z $DEPLOYMENT_NAME ]; then
 	# Default value
 	export DEPLOYMENT_NAME="undeployed"
 else
@@ -20,7 +20,7 @@ else
 fi
 
 # Export RELAY_ID env var
-if [ -z ${RELAY_ID+x} ]; then
+if [ -z $RELAY_ID ]; then
 	# Default value
 	export RELAY_ID="0"
 else

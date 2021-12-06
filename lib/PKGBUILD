@@ -1,6 +1,6 @@
 # Maintainer: Penn Bauman <pcb8gb@virginia.edu>
 pkgname=besic-lib
-pkgver=0.2.0
+pkgver=0.2.1
 pkgrel=1
 pkgdesc="Shared BESI-C scripts"
 arch=("any")
