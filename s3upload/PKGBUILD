@@ -1,6 +1,6 @@
 # Maintainer: Penn Bauman <pcb8gb@virginia.edu>
 pkgname=besic-s3upload
-pkgver=0.1.0
+pkgver=0.1.1
 pkgrel=1
 pkgdesc="BESI-C AWS S3 upload script"
 arch=("any")

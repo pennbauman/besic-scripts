@@ -1,0 +1,2 @@
+# Upload every 30 minutes
+*/30 * * * * besic-s3upload

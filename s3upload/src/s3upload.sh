@@ -4,14 +4,16 @@
 #   Penn Bauman <pcb8gb@virginia.edu>
 
 DATA_DIR="/var/besic/data"
+ARCHIVE_DIR="/var/besic/archive"
 KEY_FILE="/var/besic/s3key.conf"
+mkdir -p $ARCHIVE_DIR
 
 LOG="/var/log/besic/s3upload.log"
 mkdir -p $(dirname LOG)
 
 
 # Create zip file
-name="$(/usr/bin/uuid)"
+name="$(date +"%Y%m%d_%H%m%S_%Z")_$(/usr/bin/uuid)"
 zip $DATA_DIR/$name.zip $DATA_DIR/*.csv
 rm -f $DATA_DIR/*.csv
 
@@ -39,7 +41,7 @@ for f in $DATA_DIR/*.zip; do
 		echo "[$(date --rfc-3339=seconds)]: $(basename $f) upload failed" >> $LOG
 		echo "$err" >> $LOG
 	else
-		rm $f
 		echo "[$(date --rfc-3339=seconds)]: $(basename $f) uploaded" >> $LOG
+		mv $f $ARCHIVE_DIR
 	fi
 done
