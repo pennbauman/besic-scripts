@@ -4,7 +4,7 @@ pkgver=0.1.0
 pkgrel=1
 pkgdesc="BESI-C relay setup"
 arch=("any")
-depends=("bash" "besic-lib" "besic-heartbeat" "besic-s3upload" "besic-beacon")
+depends=("bash" "besic-lib" "besic-remote" "besic-s3upload" "besic-beacon")
 conflicts=("besic-basestation")
 
 package() {

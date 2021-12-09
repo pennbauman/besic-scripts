@@ -4,7 +4,7 @@ pkgver=0.1.0
 pkgrel=1
 pkgdesc="BESI-C basestation setup"
 arch=("any")
-depends=("bash" "besic-lib" "besic-heartbeat")
+depends=("bash" "besic-lib" "besic-remote")
 conflicts=("besic-relay")
 
 package() {

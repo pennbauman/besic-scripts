@@ -3,8 +3,6 @@
 #   https://github.com/pennbauman/besic-debs
 #   Penn Bauman <pcb8gb@virginia.edu>
 
-DIR="/var/besic"
-
 LOG="/var/log/besic/heartbeat.log"
 mkdir -p $(dirname LOG)
 
