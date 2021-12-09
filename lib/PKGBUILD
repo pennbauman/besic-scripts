@@ -9,6 +9,7 @@ depends=("bash")
 package() {
   mkdir -p "$pkgdir/usr/bin"
   mkdir -p "$pkgdir/etc/besic"
+  mkdir -p "$pkgdir/etc/cron.d"
 
   cp "$srcdir/url-conf.sh" "$pkgdir/usr/bin/besic-url-conf"
   chmod 755 "$pkgdir/usr/bin/besic-url-conf"
@@ -19,4 +20,6 @@ package() {
 
   cp "$srcdir/deploy-conf.sh" "$pkgdir/usr/bin/besic-deploy-conf"
   chmod 755 "${pkgdir}/usr/bin/besic-deploy-conf"
+
+  cp "$srcdir/crontab" "$pkgdir/etc/cron.d/besic-lib"
 }
