@@ -18,4 +18,3 @@ if [ -z $API_URL ]; then
 else
 	export API_URL="$API_URL"
 fi
-echo $API_URL

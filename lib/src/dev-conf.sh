@@ -13,8 +13,7 @@ else
 	# Create config file if it doesn't exists
 	mkdir -p $(dirname $CONF_FILE)
 
-	read mac < /sys/class/net/eth0/address
-	MAC="$(echo $mac | sed 's/://g')"
+	MAC="$(sed 's/://g' /sys/class/net/wlan0/address)"
 	echo "MAC=\"$MAC\"" > $CONF_FILE
 
 	PASSWORD=$(openssl rand -hex 32)

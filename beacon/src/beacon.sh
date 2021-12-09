@@ -32,8 +32,8 @@ if [[ $id =~ [0-9a-fA-F][0-9a-fA-F] ]]; then
 
 	# Start bluetooth beacon
 	hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 $uuid $major $minor C8 00
-	echo "[$(date --rfc-3339=seconds)]: Started beacon with ID 0x$id" >> $LOG
+	echo "[$(date --rfc-3339=seconds)] Started beacon with ID 0x$id" >> $LOG
 else
-	echo "[$(date --rfc-3339=seconds)]: Invalid beacon ID '$id'" >> $LOG
+	echo "[$(date --rfc-3339=seconds)] Invalid beacon ID '$id'" >> $LOG
 	echo "> RELAY_ID='$RELAY_ID' MAC='$MAC'" >> $LOG
 fi

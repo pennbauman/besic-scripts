@@ -12,16 +12,17 @@ mkdir -p $(dirname LOG)
 
 # read configurations
 source besic-url-conf
-err=$(source besic-dev-conf)
+source besic-dev-conf
 if [ $? -ne 0 ]; then
-	echo "[$(date --rfc-3339=seconds)] $err" >> $LOG
+	echo "[$(date --rfc-3339=seconds)] Device configuration failed" >> $LOG
 	exit 1
 fi
 
 # Get device type
-if [ ! -e $TYPE_CONF ]; then
+if [ -e $TYPE_CONF ]; then
 	source $TYPE_CONF
-else
+fi
+if [ -z $DEVICE_TYPE ]; then
 	echo "[$(date --rfc-3339=seconds)] Missing DEVICE_TYPE" >> $LOG
 	exit 1
 fi
@@ -32,6 +33,7 @@ while true; do
 	if [[ $res == "Success" ]]; then
 		break
 	fi
-	echo "[$(date --rfc-3339=seconds)]: Remote init failed ($res)" >> $LOG
+	echo "[$(date --rfc-3339=seconds)] Remote init failed ($res)" >> $LOG
 	sleep 10
 done
+echo "[$(date --rfc-3339=seconds)] Remote init successful" >> $LOG

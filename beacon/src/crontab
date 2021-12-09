@@ -1,2 +1,3 @@
 # Start bluetooth beacon
 @reboot besic-beacon
+* * * * * besic-beacon

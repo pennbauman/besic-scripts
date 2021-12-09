@@ -19,7 +19,7 @@ rm -f $DATA_DIR/*.csv
 
 # Check zip files exists
 if (( $(find $DATA_DIR -name "*.zip" | wc -l) == 0 )); then
-	echo "[$(date --rfc-3339=seconds)]: No data to uploaded" >> $LOG
+	echo "[$(date --rfc-3339=seconds)] No data to uploaded" >> $LOG
 	exit
 fi
 
@@ -27,7 +27,7 @@ fi
 if [ -e $KEY_FILE ]; then
 	source $KEY_FILE
 else
-	echo "[$(date --rfc-3339=seconds)]: Missing S3 keys" >> $LOG
+	echo "[$(date --rfc-3339=seconds)] Missing S3 keys" >> $LOG
 	exit 1
 fi
 
@@ -38,10 +38,10 @@ source besic-deploy-conf
 for f in $DATA_DIR/*.zip; do
 	err=$(python3 /usr/share/besic/boto3-uploader.py $f)
 	if (( $? != 0 )); then
-		echo "[$(date --rfc-3339=seconds)]: $(basename $f) upload failed" >> $LOG
+		echo "[$(date --rfc-3339=seconds)] $(basename $f) upload failed" >> $LOG
 		echo "$err" >> $LOG
 	else
-		echo "[$(date --rfc-3339=seconds)]: $(basename $f) uploaded" >> $LOG
+		echo "[$(date --rfc-3339=seconds)] $(basename $f) uploaded" >> $LOG
 		mv $f $ARCHIVE_DIR
 	fi
 done
