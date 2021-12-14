@@ -1,10 +1,10 @@
 # Maintainer: Penn Bauman <pcb8gb@virginia.edu>
 pkgname=besic-s3upload
-pkgver=0.1.1
+pkgver=0.2.0
 pkgrel=1
 pkgdesc="BESI-C AWS S3 upload script"
 arch=("any")
-depends=("bash" "python3" "python3-boto3" "uuid" "besic-lib")
+depends=("bash" "python3" "python3-boto3" "uuid" "zip" "besic-lib")
 
 package() {
   mkdir -p "$pkgdir/usr/bin"

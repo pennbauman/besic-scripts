@@ -13,9 +13,11 @@ mkdir -p $(dirname LOG)
 
 
 # Create zip file
-name="$(date +"%Y%m%d_%H%m%S_%Z")_$(/usr/bin/uuid)"
-zip $DATA_DIR/$name.zip $DATA_DIR/*.csv
-rm -f $DATA_DIR/*.csv
+if (( $(find $DATA_DIR -name "*.csv" | wc -l) != 0 )); then
+	name="$(date +"%Y%m%d_%H%M%S_%Z")_$(/usr/bin/uuid)"
+	zip -j $DATA_DIR/$name.zip $DATA_DIR/*.csv
+	rm -f $DATA_DIR/*.csv
+fi
 
 # Check zip files exists
 if (( $(find $DATA_DIR -name "*.zip" | wc -l) == 0 )); then
@@ -30,6 +32,8 @@ else
 	echo "[$(date --rfc-3339=seconds)] Missing S3 keys" >> $LOG
 	exit 1
 fi
+export S3_ACCESS_KEY="$S3_ACCESS_KEY"
+export S3_SECRET_KEY="$S3_SECRET_KEY"
 
 # Get deployment
 source besic-deploy-conf
