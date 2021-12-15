@@ -1,4 +1,0 @@
-# Create log directory
-@reboot mkdir -p /var/log/besic
-# Trim log files
-@daily for f in /var/log/besic/*.log; do sed -i '2000,$d' $f; done

@@ -1,6 +1,6 @@
 # Announce on startup
-@reboot besic-announce
+@reboot root besic-announce
 # Update deployment info hourly
-@hourly besic-update
+@hourly root besic-update
 # Sent heartbeat every minute
-* * * * * besic-heartbeat
+* * * * * root besic-heartbeat

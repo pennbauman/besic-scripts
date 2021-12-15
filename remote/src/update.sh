@@ -18,7 +18,7 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-curl -s "$API/device/deployment" -d "mac=$MAC" -d "password=$PASSWORD" > $TMP
+curl -s "$API_URL/device/deployment" -d "mac=$MAC" -d "password=$PASSWORD" > $TMP
 if [[ $(cat $TMP) =~ DEPLOYMENT ]]; then
 	mv $TMP $DEPLOY_CONF
 	echo "[$(date --rfc-3339=seconds)] Deployment conf updated" >> $LOG
