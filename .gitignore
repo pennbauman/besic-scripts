@@ -1,2 +1,13 @@
-pkg
+*.tar.xz
 *.deb
+*.dsc
+*.build
+*.buildinfo
+*.changes
+*.substvars
+*.debhelper
+debhelper-build-stamp
+files
+/beacon/debian/besic-beacon
+/remote/debian/besic-remote
+/s3upload/debian/besic-s3upload

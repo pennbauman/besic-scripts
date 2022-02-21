@@ -1,0 +1,12 @@
+Source: besic-beacon
+Maintainer: Penn Bauman <pcb8gb@virginia.edu>
+Section: misc
+Priority: optional
+Standards-Version: 4.5.0
+Build-Depends: debhelper (>= 9)
+
+Package: besic-beacon
+Architecture: all
+Depends: bash (>= 5), coreutils (>= 8), bluez, besic-lib, ${misc:Depends}
+Description: BESI-C Bluetooth beacon
+ Script and crontab to setup BESI-C Bluetooth beacon

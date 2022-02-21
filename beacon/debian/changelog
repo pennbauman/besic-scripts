@@ -1,0 +1,5 @@
+besic-beacon (0.2.0) UNRELEASED; urgency=medium
+
+  * Convered to standard debian package from makedeb.
+
+ -- Penn Bauman <pcb8gb@virginia.edu>  Mon, 21 Feb 2022 03:46:56 -0500
