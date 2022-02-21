@@ -1,3 +1,9 @@
+besic-remote (0.3.1) UNRELEASED; urgency=medium
+
+  * Switched from besic-lib to libbesic (besic-getval).
+
+ -- Penn Bauman <pcb8gb@virginia.edu>  Mon, 21 Feb 2022 04:37:47 -0500
+
 besic-remote (0.3.0) UNRELEASED; urgency=medium
 
   * Convered to standard debian package from makedeb.

@@ -7,13 +7,10 @@ LOG="/var/log/besic/heartbeat.log"
 mkdir -p $(dirname LOG)
 
 
-# read configurations
-source besic-url-conf
-source besic-dev-conf
-if [ $? -ne 0 ]; then
-	echo "[$(date --rfc-3339=seconds)] Device configuration failed" >> $LOG
-	exit 1
-fi
+API_URL="$(besic-getval api-url)"
+MAC="$(besic-getval mac)"
+PASSWORD="$(besic-getval password)"
+
 
 # make heartbeat calls
 fail=0

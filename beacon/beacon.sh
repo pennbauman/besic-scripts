@@ -4,15 +4,18 @@
 #   Yudel Martinez <yam3nv@virginia.edu>
 #   Penn Bauman <pcb8gb@virginia.edu>
 
+
+DEPLOY_CONF="/var/besic/deploy.conf"
+
 LOG="/var/log/besic/beacon.log"
 mkdir -p $(dirname LOG)
 
 
 # Determine ID
-source besic-deploy-conf
+source $DEPLOY_CONF
 if [ -z $RELAY_ID ] || [[ $RELAY_ID == 0 ]]; then
-	source besic-dev-conf
-	id=${MAC: -2}
+	mac=$(besic-getval mac)
+	id=${mac: -2}
 else
 	id=$(printf "%02d" $RELAY_ID)
 fi

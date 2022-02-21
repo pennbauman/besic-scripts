@@ -7,6 +7,6 @@ Build-Depends: debhelper (>= 9)
 
 Package: besic-beacon
 Architecture: all
-Depends: bash (>= 5), coreutils (>= 8), bluez, besic-lib, ${misc:Depends}
+Depends: bash (>= 5), coreutils (>= 8), bluez, besic-getval, ${misc:Depends}
 Description: BESI-C Bluetooth beacon
  Script and crontab to setup BESI-C Bluetooth beacon

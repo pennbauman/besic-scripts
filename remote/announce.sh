@@ -10,26 +10,15 @@ LOG="/var/log/besic/announce.log"
 mkdir -p $(dirname LOG)
 
 
-# read configurations
-source besic-url-conf
-source besic-dev-conf
-if [ $? -ne 0 ]; then
-	echo "[$(date --rfc-3339=seconds)] Device configuration failed" >> $LOG
-	exit 1
-fi
+API_URL="$(besic-getval api-url)"
+TYPE="$(besic-getval type)"
+MAC="$(besic-getval mac)"
+PASSWORD="$(besic-getval password)"
 
-# Get device type
-if [ -e $TYPE_CONF ]; then
-	source $TYPE_CONF
-fi
-if [ -z $DEVICE_TYPE ]; then
-	echo "[$(date --rfc-3339=seconds)] Missing DEVICE_TYPE" >> $LOG
-	exit 1
-fi
 
 # Initialize basestation on remote server
 while true; do
-	res=$(curl -s "$API_URL/device/new" -d "mac=$MAC" -d "password=$PASSWORD" -d "type=$DEVICE_TYPE")
+	res=$(curl -s "$API_URL/device/new" -d "mac=$MAC" -d "password=$PASSWORD" -d "type=$TYPE")
 	if [[ $res == "Success" ]]; then
 		break
 	fi

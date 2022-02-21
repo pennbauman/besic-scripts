@@ -8,11 +8,8 @@ import os
 
 
 # Check environment variables
-if not os.getenv('DEPLOYMENT_NAME'):
-    print("Missing DEPLOYMENT_NAME")
-    sys.exit(1)
-if not os.getenv('RELAY_ID'):
-    print("Missing RELAY_ID")
+if not os.getenv('MAC'):
+    print("Missing MAC")
     sys.exit(1)
 if not os.getenv('S3_ACCESS_KEY'):
     print("Missing S3_ACCESS_KEY")
@@ -27,7 +24,7 @@ if len(sys.argv) < 2:
     print("Missing file to upload")
     sys.exit(2)
 upfile = sys.argv[1]
-aws_path = os.getenv('DEPLOYMENT_NAME') + "/Relays/" + os.getenv('RELAY_ID') + "/" + upfile.split("/")[-1]
+aws_path = "Relays/" + os.getenv('MAC') + "/" + upfile.split("/")[-1]
 
 # Setup uploader
 session = boto3.Session(aws_access_key_id=os.getenv('S3_ACCESS_KEY'),
