@@ -42,7 +42,9 @@ s3 = session.resource('s3')
 
 # Upload loop
 last_success = True
-for upfile in os.listdir(updir):
+files = os.listdir(updir)
+files.sort()
+for upfile in files:
     if not upfile.endswith(".zip"):
         continue
     try:
@@ -51,11 +53,12 @@ for upfile in os.listdir(updir):
         with open(os.path.join(updir, upfile), "rb") as data:
             s3.Bucket("besi-c").put_object(Key=aws_path, Body=data)
         os.rename(os.path.join(updir, upfile), os.path.join(archivedir, upfile))
-        log("%s uploaded" % os.path.basename(upfile))
+        log(os.path.basename(upfile) + " uploaded")
         last_success = True
     except Exception as e:
-        log("%s uploaded failed\n%s" % (os.path.basename(upfile), e))
+        log(os.path.basename(upfile) + " uploaded failed\n" + str(e))
         if last_success:
             last_success = False
         else:
+            log("Upload cancelled")
             sys.exit(1)

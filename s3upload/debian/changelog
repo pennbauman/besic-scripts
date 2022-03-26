@@ -1,8 +1,14 @@
+besic-s3upload (0.4.1) UNRELEASED; urgency=medium
+
+  * Fixed print formatting.
+
+ -- Penn Bauman <pcb8gb@virginia.edu>  Sat, 26 Feb 2022 05:32:20 -0500
+
 besic-s3upload (0.4.0) UNRELEASED; urgency=medium
 
   * Moved file loop into python script.
 
- -- Penn Bauman <pcb8gb@virginia.edu>  Mon, 21 Feb 2022 04:37:47 -0500
+ -- Penn Bauman <pcb8gb@virginia.edu>  Sat, 26 Feb 2022 04:37:47 -0500
 
 besic-s3upload (0.3.1) UNRELEASED; urgency=medium
 
