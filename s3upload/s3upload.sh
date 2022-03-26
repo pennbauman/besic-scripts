@@ -39,13 +39,11 @@ export S3_SECRET_KEY="$S3_SECRET_KEY"
 export MAC="$(besic-getval mac)"
 
 # Upload zip files
-for f in $DATA_DIR/*.zip; do
-	err=$(python3 /usr/share/besic/boto3-uploader.py $f)
-	if (( $? != 0 )); then
-		echo "[$(date --rfc-3339=seconds)] $(basename $f) upload failed" >> $LOG
-		echo "$err" >> $LOG
-	else
-		echo "[$(date --rfc-3339=seconds)] $(basename $f) uploaded" >> $LOG
-		mv $f $ARCHIVE_DIR
-	fi
-done
+if [ -e $HOME/.s3uploading ]; then
+	echo "[$(date --rfc-3339=seconds)] Upload already running" >> $LOG
+	exit 0
+else
+	touch $HOME/.s3uploading
+	python3 /usr/share/besic/boto3-uploader.py $DATA_DIR $ARCHIVE_DIR >> $LOG
+	rm $HOME/.s3uploading
+fi
