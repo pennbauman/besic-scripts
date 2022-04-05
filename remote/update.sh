@@ -22,4 +22,5 @@ if [[ $(cat $TMP) =~ DEPLOYMENT ]]; then
 else
 	echo "[$(date --rfc-3339=seconds)] Invalid deployment conf" >> $LOG
 	cat $TMP >> $LOG
+	echo "" >> $LOG
 fi
