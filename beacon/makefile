@@ -1,5 +1,6 @@
 prefix = /usr/local
+bindir = $(prefix)/bin
 
 install:
-	mkdir -p $(DESTDIR)$(prefix)/bin
-	install -T beacon.sh $(DESTDIR)$(prefix)/bin/besic-beacon
+	install -m 0755 -d $(DESTDIR)$(bindir)
+	install -m 0755 beacon.sh $(DESTDIR)$(bindir)/besic-beacon
