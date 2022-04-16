@@ -5,15 +5,18 @@
 
 DATA_DIR="$(besic-getval data-dir)"
 ARCHIVE_DIR="$(besic-getval archive-dir)"
-KEY_FILE="/var/besic/s3key.conf"
 LOCK_FILE="/tmp/besic/s3uploading"
 mkdir -m 777 -p $ARCHIVE_DIR $(dirname $LOCK_FILE)
 
-LOG="/var/log/besic/s3upload.log"
+LOG="$(besic-getval log-dir)/s3upload.log"
 mkdir -p $(dirname $LOG)
 
 
+# Read settings
 export MAC="$(besic-getval mac)"
+export S3_BUCKET="$(besic-getval s3-bucket)"
+export S3_ACCESS_KEY=$(besic-secret S3_ACCESS_KEY)
+export S3_SECRET_KEY=$(besic-secret S3_SECRET_KEY)
 
 
 # Create zip file
@@ -28,16 +31,6 @@ if (( $(find $DATA_DIR -name "*.zip" | wc -l) == 0 )); then
 	echo "[$(date --rfc-3339=seconds)] No data to uploaded" >> $LOG
 	exit
 fi
-
-# Read keys
-if [ -e $KEY_FILE ]; then
-	source $KEY_FILE
-else
-	echo "[$(date --rfc-3339=seconds)] Missing S3 keys" >> $LOG
-	exit 1
-fi
-export S3_ACCESS_KEY="$S3_ACCESS_KEY"
-export S3_SECRET_KEY="$S3_SECRET_KEY"
 
 
 # Upload zip files

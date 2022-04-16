@@ -4,7 +4,7 @@
 #   Yudel Martinez <yam3nv@virginia.edu>
 #   Penn Bauman <pcb8gb@virginia.edu>
 
-LOG="/var/log/besic/beacon.log"
+LOG="$(besic-getval log-dir)/beacon.log"
 mkdir -p $(dirname $LOG)
 
 

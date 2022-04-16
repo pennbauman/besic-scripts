@@ -17,6 +17,9 @@ def log(text):
 if not os.getenv('MAC'):
     print("Missing MAC")
     sys.exit(1)
+if not os.getenv('S3_BUCKET'):
+    print("Missing S3_BUCKET")
+    sys.exit(1)
 if not os.getenv('S3_ACCESS_KEY'):
     print("Missing S3_ACCESS_KEY")
     sys.exit(1)
@@ -49,9 +52,9 @@ for upfile in files:
         continue
     try:
         # Upload zip file
-        aws_path = "relays/" + os.getenv('MAC') + "/" + upfile
+        aws_path = os.getenv('MAC') + "/" + upfile
         with open(os.path.join(updir, upfile), "rb") as data:
-            s3.Bucket("besi-c").put_object(Key=aws_path, Body=data)
+            s3.Bucket(os.getenv('S3_BUCKET')).put_object(Key=aws_path, Body=data)
         os.rename(os.path.join(updir, upfile), os.path.join(archivedir, upfile))
         log(os.path.basename(upfile) + " uploaded")
         last_success = True
