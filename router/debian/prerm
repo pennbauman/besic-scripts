@@ -1,0 +1,21 @@
+#!/bin/sh
+
+TMP=$(mktemp)
+
+#/usr/bin/besic-router cleanup
+
+cat /etc/dnsmasq.conf | tr '\n' '\r' | sed 's/### BESI-C ROUTER CONFIG ###.*### DO NOT EDIT ###\r//' | tr '\r' '\n' > $TMP
+mv $TMP /etc/dnsmasq.conf
+
+
+cat /etc/sysctl.conf | tr '\n' '\r' | sed 's/### BESI-C ROUTER CONFIG ###.*### DO NOT EDIT ###//' | tr '\r' '\n' > $TMP
+mv $TMP /etc/sysctl.conf
+
+
+cat /etc/dhcpcd.conf | tr '\n' '\r' | sed 's/### BESI-C ROUTER CONFIG ###.*### DO NOT EDIT ###\r//' | tr '\r' '\n' > $TMP
+mv $TMP /etc/dhcpcd.conf
+
+
+rm -f /etc/hostapd/besic.conf
+
+rm -f /etc/network/interfaces.d/besic.conf

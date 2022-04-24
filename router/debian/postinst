@@ -1,0 +1,77 @@
+#!/bin/bash
+
+systemctl unmask hostapd
+systemctl unmask besic-router
+
+if [[ $(grep '### BESI-C ROUTER CONFIG ###' /etc/dnsmasq.conf | wc -l) == 0 ]]; then
+	echo "
+### BESI-C ROUTER CONFIG ###
+interface=wlan1
+dhcp-range=192.168.17.100,192.168.17.120,255.255.255.0,24h
+### DO NOT EDIT ###" >> /etc/dnsmasq.conf
+	echo "/etc/dnsmasq.conf setup"
+fi
+
+if [[ $(grep '### BESI-C ROUTER CONFIG ###' /etc/sysctl.conf | wc -l) == 0 ]]; then
+	echo "### BESI-C ROUTER CONFIG ###
+net.ipv4.ip_forward=1
+### DO NOT EDIT ###" >> /etc/sysctl.conf
+	sysctl -w net.ipv4.ip_forward=1 > /dev/null
+	echo "/etc/sysctl.conf setup"
+fi
+
+if [[ $(grep '### BESI-C ROUTER CONFIG ###' /etc/dhcpcd.conf | wc -l) == 0 ]]; then
+	echo "
+### BESI-C ROUTER CONFIG ###
+interface wlan1
+static ip_address=192.168.17.1/24
+nohook wpa_supplicant
+### DO NOT EDIT ###" >> /etc/dhcpcd.conf
+	echo "/etc/dhcpcd.conf setup"
+fi
+
+if [ -e /etc/hostapd/besic.conf ]; then
+	if [[ $(grep '### BESI-C ROUTER CONFIG ###' /etc/hostapd/besic.conf | wc -l) == 0 ]]; then
+		echo "Conflicting /etc/hostapd/hostapd.conf already exists"
+		exit 1
+	fi
+else
+	mkdir -p /etc/hostapd
+	source /etc/besic/router.conf
+	if [[ $ROUTER_SSID == "" ]]; then
+		echo "Missing $$ROUTER_SSID"
+	fi
+	if [[ $ROUTER_PSWD == "" ]]; then
+		echo "Missing $$ROUTER_PSWD"
+	fi
+	echo "### BESI-C ROUTER CONFIG ###
+interface=wlan1
+driver=nl80211
+ssid=$ROUTER_SSID
+hw_mode=g
+channel=7
+wmm_enabled=0
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+wpa=2
+wpa_passphrase=$ROUTER_PSWD
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+### DO NOT EDIT ###" > /etc/hostapd/hostapd.conf
+	echo "/etc/hostapd/hostapd.conf setup"
+fi
+
+if [ -e /etc/network/interfaces.d/besic.conf ]; then
+	if [[ $(grep '### BESI-C ROUTER CONFIG ###' /etc/network/interfaces.d/besic.conf | wc -l) == 0 ]]; then
+		echo "Conflicting /etc/network/interfaces.d/besic.conf already exists"
+		exit 1
+	fi
+else
+	echo "
+### BESI-C ROUTER CONFIG ###
+hostapd /etc/hostapd/hostapd.conf
+### DO NOT EDIT ###" > /etc/network/interfaces.d/besic.conf
+	echo "/etc/network/interfaces.d/besic.conf setup"
+fi

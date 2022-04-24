@@ -1,0 +1,12 @@
+Source: besic-router
+Maintainer: Penn Bauman <pcb8gb@virginia.edu>
+Section: misc
+Priority: optional
+Standards-Version: 4.5.0
+Build-Depends: debhelper (>= 9)
+
+Package: besic-router
+Architecture: all
+Depends: libbesic-tools, iptables, dnsmasq, hostapd, dhcpcd, ${misc:Depends}
+Description: BESI-C router setup package
+ BESI-C router setup and configuration files and scripts
