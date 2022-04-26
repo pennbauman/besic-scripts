@@ -1,8 +1,5 @@
 #!/bin/bash
 
-systemctl unmask hostapd
-systemctl unmask besic-router
-
 if [[ $(grep '### BESI-C ROUTER CONFIG ###' /etc/dnsmasq.conf | wc -l) == 0 ]]; then
 	echo "
 ### BESI-C ROUTER CONFIG ###
@@ -75,3 +72,13 @@ hostapd /etc/hostapd/hostapd.conf
 ### DO NOT EDIT ###" > /etc/network/interfaces.d/besic.conf
 	echo "/etc/network/interfaces.d/besic.conf setup"
 fi
+
+
+systemctl unmask hostapd
+systemctl unmask besic-router
+systemctl enable besic-router
+
+systemctl restart dnsmasq
+systemctl restart dhcpcd
+systemctl restart hostapd
+systemctl start besic-router

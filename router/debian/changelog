@@ -1,3 +1,9 @@
+besic-router (0.1.1) UNRELEASED; urgency=medium
+
+  * Autoenables and startes systemd service.
+
+ -- Penn Bauman <pcb8gb@virginia.edu>  Tue, 26 Apr 2022 18:41:48 -0500
+
 besic-router (0.1.0) UNRELEASED; urgency=medium
 
   * Initial release.
