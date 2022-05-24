@@ -9,4 +9,4 @@
 debhelper-build-stamp
 files
 tmp
-/*/debian/besic-*
+/*/debian/besic-*/*

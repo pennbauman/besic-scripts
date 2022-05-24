@@ -1,3 +1,9 @@
+besic-autoupdates (0.2.1) UNRELEASED; urgency=medium
+
+  * Fixed crontab name.
+
+ -- Penn Bauman <pcb8gb@virginia.edu>  Mon, 24 May 2022 14:21:19 -0500
+
 besic-autoupdates (0.2.0) UNRELEASED; urgency=medium
 
   * Initial version.
