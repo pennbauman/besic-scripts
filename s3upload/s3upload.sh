@@ -5,6 +5,7 @@
 
 DATA_DIR="$(besic-getval data-dir)"
 ARCHIVE_DIR="$(besic-getval archive-dir)"
+MAC="$(besic-getval mac)"
 LOCK_FILE="/tmp/besic/s3uploading"
 mkdir -m 777 -p $ARCHIVE_DIR $(dirname $LOCK_FILE)
 
