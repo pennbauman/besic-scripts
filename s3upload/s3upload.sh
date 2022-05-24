@@ -12,13 +12,6 @@ LOG="$(besic-getval log-dir)/s3upload.log"
 mkdir -p $(dirname $LOG)
 
 
-# Read settings
-export MAC="$(besic-getval mac)"
-export S3_BUCKET="$(besic-getval s3-bucket)"
-export S3_ACCESS_KEY=$(besic-secret S3_ACCESS_KEY)
-export S3_SECRET_KEY=$(besic-secret S3_SECRET_KEY)
-
-
 # Create zip file
 if (( $(find $DATA_DIR -name "*.csv" | wc -l) != 0 )); then
 	name="$(date +"%Y%m%d_%H%M%S_%Z")_$MAC"

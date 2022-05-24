@@ -1,3 +1,9 @@
+besic-s3upload (0.6.0) UNRELEASED; urgency=medium
+
+  * Converted to using libbesic through python library.
+
+ -- Penn Bauman <pcb8gb@virginia.edu>  Mon, 23 May 2022 21:50:03 -0500
+
 besic-s3upload (0.5.1) UNRELEASED; urgency=medium
 
   * Added getting S3 bucket, secrets, and log directory from libbesic.

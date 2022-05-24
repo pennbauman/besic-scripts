@@ -6,6 +6,7 @@ import boto3
 import sys
 import os
 from datetime import datetime, timezone
+import besic
 
 # Print log
 def log(text):
@@ -14,16 +15,10 @@ def log(text):
 
 
 # Check environment variables
-if not os.getenv('MAC'):
-    print("Missing MAC")
-    sys.exit(1)
-if not os.getenv('S3_BUCKET'):
-    print("Missing S3_BUCKET")
-    sys.exit(1)
-if not os.getenv('S3_ACCESS_KEY'):
+if not besic.secret('S3_ACCESS_KEY'):
     print("Missing S3_ACCESS_KEY")
     sys.exit(1)
-if not os.getenv('S3_SECRET_KEY'):
+if not besic.secret('S3_SECRET_KEY'):
     print("Missing S3_SECRET_KEY")
     sys.exit(1)
 
@@ -39,8 +34,8 @@ updir = sys.argv[1]
 archivedir = sys.argv[2]
 
 # Setup uploader
-session = boto3.Session(aws_access_key_id=os.getenv('S3_ACCESS_KEY'),
-        aws_secret_access_key=os.getenv('S3_SECRET_KEY'))
+session = boto3.Session(aws_access_key_id=besic.secret('S3_ACCESS_KEY'),
+        aws_secret_access_key=besic.secret('S3_SECRET_KEY'))
 s3 = session.resource('s3')
 
 # Upload loop
@@ -52,9 +47,9 @@ for upfile in files:
         continue
     try:
         # Upload zip file
-        aws_path = os.getenv('MAC') + "/" + upfile
+        aws_path = besic.device_mac() + "/" + upfile
         with open(os.path.join(updir, upfile), "rb") as data:
-            s3.Bucket(os.getenv('S3_BUCKET')).put_object(Key=aws_path, Body=data)
+            s3.Bucket(besic.s3_bucket()).put_object(Key=aws_path, Body=data)
         os.rename(os.path.join(updir, upfile), os.path.join(archivedir, upfile))
         log(os.path.basename(upfile) + " uploaded")
         last_success = True
