@@ -1,6 +1,6 @@
 #!/bin/bash
 # BESI-C Router Periodic Setup Script
-#   https://github.com/pennbauman/besic-basestation
+#   https://github.com/besi-c/besic-scripts
 #   Penn Bauman <pcb8gb@virginia.edu>
 
 LOG="$(besic-getval log-dir)/router.log"

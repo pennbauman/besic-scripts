@@ -1,4 +1,7 @@
 #!/bin/bash
+# BESI-C Automatic Updater
+#   https://github.com/besi-c/besic-scripts
+#   Penn Bauman <pcb8gb@virginia.edu>
 
 LOG="/var/log/besic/autoupdates.log"
 DIR="/var/besic"
@@ -11,6 +14,7 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 
+# Rerun updates until complete
 while 1; do
 	apt-get update &>> $LOG
 	code=$?
@@ -32,11 +36,12 @@ while 1; do
 		echo "[$(date --rfc-3339=seconds)] Updated Raspberry Pi OS" >> $LOG
 	fi
 
+	# Wait if router to allow others to update
 	if [ $(command -v besic-router) ]; then
 		sleep $((30*60))
 	fi
 
-
+	# Reboot device
 	echo "[$(date --rfc-3339=seconds)] Restarting ..." >> $LOG
 	reboot
 done

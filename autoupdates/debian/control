@@ -8,5 +8,5 @@ Build-Depends: debhelper (>= 9)
 Package: besic-autoupdates
 Architecture: all
 Depends: bash (>= 5), ${misc:Depends}
-Description: BESI-C Autoupdate script
+Description: BESI-C Automatic Updater
  Script and crontab to automatically update packages and reboot

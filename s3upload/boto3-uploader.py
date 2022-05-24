@@ -1,5 +1,5 @@
-# BESI-C AWS S3 Data Uploader
-#   https://github.com/pennbauman/besic-debs
+# BESI-C AWS S3 File Uploader
+#   https://github.com/besi-c/besic-scripts
 #   Yudel Martinez <yam3nv@virginia.edu>
 #   Penn Bauman <pcb8gb@virginia.edu>
 import boto3
@@ -50,6 +50,7 @@ for upfile in files:
         aws_path = besic.device_mac() + "/" + upfile
         with open(os.path.join(updir, upfile), "rb") as data:
             s3.Bucket(besic.s3_bucket()).put_object(Key=aws_path, Body=data)
+        # Archive zip file
         os.rename(os.path.join(updir, upfile), os.path.join(archivedir, upfile))
         log(os.path.basename(upfile) + " uploaded")
         last_success = True

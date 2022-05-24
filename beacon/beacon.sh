@@ -1,6 +1,6 @@
 #!/bin/bash
-# BESI-C Start Bluetooth Beacon
-#   https://github.com/pennbauman/besic-debs
+# BESI-C Bluetooth Beacon
+#   https://github.com/besi-c/besic-scripts
 #   Yudel Martinez <yam3nv@virginia.edu>
 #   Penn Bauman <pcb8gb@virginia.edu>
 

@@ -1,3 +1,6 @@
+# BESI-C Data Uploader for AWS S3
+#   https://github.com/besi-c/besic-scripts
+#   Penn Bauman <pcb8gb@virginia.edu>
 prefix = /usr/local
 bindir = $(prefix)/bin
 sharedir = $(prefix)/share/besic

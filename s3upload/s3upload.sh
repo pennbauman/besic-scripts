@@ -1,6 +1,6 @@
 #!/bin/bash
-# BESI-C Relay Data Upload
-#   https://github.com/pennbauman/besic-debs
+# BESI-C Data Uploader for AWS S3
+#   https://github.com/besi-c/besic-scripts
 #   Penn Bauman <pcb8gb@virginia.edu>
 
 DATA_DIR="$(besic-getval data-dir)"

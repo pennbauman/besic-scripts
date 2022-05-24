@@ -1,3 +1,6 @@
+# BESI-C Bluetooth Beacon
+#   https://github.com/besi-c/besic-scripts
+#   Penn Bauman <pcb8gb@virginia.edu>
 prefix = /usr/local
 bindir = $(prefix)/bin
 

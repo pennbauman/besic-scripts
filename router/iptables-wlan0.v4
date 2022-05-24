@@ -1,4 +1,6 @@
 # BESI-C Router Config (wlan0)
+#   https://github.com/besi-c/besic-scripts
+#   Penn Bauman <pcb8gb@virginia.edu>
 
 *filter
 :INPUT ACCEPT [0:0]
