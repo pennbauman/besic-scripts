@@ -3,8 +3,9 @@
 #   https://github.com/besi-c/besic-scripts
 #   Penn Bauman <pcb8gb@virginia.edu>
 
-LOG="/var/log/besic/autoupdates.log"
-DIR="/var/besic"
+LOG="$(besic-getval log-dir)/autoupdates.log"
+mkdir -p $(dirname $LOG)
+
 TMP_DIR=$(mktemp -d)
 
 # check root
@@ -15,7 +16,7 @@ fi
 
 
 # Rerun updates until complete
-while 1; do
+while [ true ]; do
 	apt-get update &>> $LOG
 	code=$?
 	if [[ $code != 0 ]]; then
