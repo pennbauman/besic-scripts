@@ -1,3 +1,9 @@
+besic-s3upload (0.7.0) UNRELEASED; urgency=medium
+
+  * Converted to pure python and removed zip archiving.
+
+ -- Penn Bauman <pcb8gb@virginia.edu>  Thu, 23 Jun 2022 01:44:33 -0500
+
 besic-s3upload (0.6.1) UNRELEASED; urgency=medium
 
   * Fixed missing MAC address in script.
